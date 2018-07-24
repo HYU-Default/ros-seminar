@@ -33,8 +33,8 @@ include_directories(
 
 ## topic_publisher 노드에 대한 빌드 옵션이다.
 ## 실행파일, 타겟 링크 라이브러리 등을 설정한다.
-add_executable(topic_publisher_node src/topic_publisher.cpp)
-target_link_libraries(topic_publisher_node ${catkin_LIBRARIES})
+add_executable(topic_publisher src/topic_publisher.cpp)
+target_link_libraries(topic_publisher ${catkin_LIBRARIES})
 
 ## topic_subscriber 노드에 대한 빌드 옵션이다.
 add_executable(topic_subscriber src/topic_subscriber.cpp)

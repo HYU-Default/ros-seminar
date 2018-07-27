@@ -1,0 +1,45 @@
+과제 7/26일 목 까지
+
+노드1 : 토픽 퍼블리셔, 토픽 서브스크라이버, 서비스 서버, 파라미터 한개
+노드2: 토픽 퍼블리셔, 토픽 서브스크라이버, 서비스 서버
+노드3 : 토픽 서브스크라이버 2개
+
+를 가지는 본인이름의 패키지를 만들것
+
+각 노드의 이름은 자유
+노드1이 발행하는 토픽의 이름은 position
+노드2이 발행하는 토픽의 이름은 state
+
+노드1은 state 토픽을 구독함
+노드2는 position 토픽을 구독함
+노드3은 state와 position 토픽 모두를 구독함
+
+노드1이 제공하는 서비스 이름은 set_position
+노드2가 제공하는 서비스 이름은 set_state
+
+노드1은 rosservice call /set_position 을 통해 요청된 x,y,z좌표를 position 토픽을 통해 퍼블리시하는데 구독한 state 값이 0이면 그대로 퍼블리시, 1이면 -x,-y,-z(반전) 해서 퍼블리시, state 값이 2면 ×+offset, y+offset, z+offset을 퍼블리시 합니다. 파라미터를 설정하고 offset의 값을 rosparam set /offset을 통해 변경합니다
+
+노드 2는 rosservice call /set_state 를 통해 요청된 state 값을 state 토픽을 통해 퍼블리시를 합니다. 요청된 state 값이 0,1,2중의 값이 아니면 ROS_WARN을 통해 잘못된값을 요청했다고 출력하고 요청받기 전의 값을 유지합니다. 서비스의 result를 false로 리턴합니다.
+구독한 position값의 x또는 y또는 z중 하나라도 5를 넘으면 자동으로 state 값을 1로 변경하고, x 또는 y또는 z중 하나라도 -20이 넘으면 자동으로 state값을 2로 변경합니다. 
+
+노드 3은 구독하는 두개의 토픽을 ROS_INFO를 통해 출력합니다.
+
+position 토픽은 아래와 같습니다
+int32 x
+int32 y
+int32 z
+
+state 토픽은 아래와 같습니다
+int32 state
+
+set_position 서비스는 아래와 같습니다
+int32 x
+int32 y
+int32 z
+---
+bool result
+
+set_state 서비스는 아래와 같습니다
+int32 state
+---
+bool result

@@ -34,8 +34,8 @@ include_directories(
 add_executable(position_node src/position_node.cpp)
 target_link_libraries(position_node ${catkin_LIBRARIES})
 
-add_executable(state_node src/state_node.cpp)
-target_link_libraries(state_node ${catkin_LIBRARIES})
+add_executable(assign_state_node src/state_node.cpp)
+target_link_libraries(assign_state_node ${catkin_LIBRARIES})
 
 add_executable(listener src/listener.cpp)
 target_link_libraries(listener ${catkin_LIBRARIES})

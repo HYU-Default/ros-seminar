@@ -28,7 +28,7 @@ void positionCB(const assignment::Position::ConstPtr& msg){
 }
 
 int main(int argc, char **argv){
-	ros::init(argc, argv, "state_node");
+	ros::init(argc, argv, "assign_state_node");
 	ros::NodeHandle nh;
 
 	ros::Publisher state_pub = nh.advertise<assignment::State>("state", 10);
